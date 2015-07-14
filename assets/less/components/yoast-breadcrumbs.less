@@ -1,0 +1,48 @@
+@charset "utf-8";
+// =============================================================================
+// Yoast SEO plugin - Breadcrumbs
+//
+// =============================================================================
+
+
+.container--breadcrumb {
+    padding: 36px 0;
+    background-color: #ccc;
+}
+
+.breadcrumb {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    background-color: #ccc;
+    border-radius: 0;
+    font-size: 13px;
+
+    a {
+        color: #fff;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: underline;
+        }
+    }
+
+    .breadcrumb__prefix {
+        &:extend(.vis-hide all);
+
+        + a {
+            padding: 0 5px 0 10px;
+        }
+    }
+
+    [typeof="v:Breadcrumb"] {
+        display: inline-block;
+        padding: 0 5px;
+
+        &:last-child {
+            color: #eee;
+        }
+    }
+}

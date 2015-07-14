@@ -1,0 +1,104 @@
+@charset "utf-8";
+// =============================================================================
+// Comments
+//
+// =============================================================================
+
+
+.comments-area {
+    padding: 0 15px;
+}
+
+.comment-list {
+    list-style-type: none;
+    padding: 0;
+
+    .children {
+        list-style-type: none;
+        padding-left: 0;
+    }
+}
+
+// Indent nested comment replies
+@iterations: 10;
+
+.mixin-loop (@i) when (@i > 0) {
+  .depth-@{i} {
+    margin-left: 32px;
+  }
+  .mixin-loop(@i - 1);
+}
+.mixin-loop(@iterations);
+
+.comment article {
+    margin-bottom: 30px;
+}
+
+.comment-content {
+    position: relative;
+}
+
+.comment-author {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.comment-body {
+    position: relative;
+    margin: 0 0 15px 110px;
+    padding: 15px 30px 30px;
+    background-color: @commentbody-bg;
+
+    &:before {
+        .triangle(left, 15px, @commentbody-bg, 12px);
+        position: absolute;
+        top: 10px;
+        left: -30px;
+    }
+}
+
+.reply {
+    text-align: right;
+}
+
+
+// Alternate the styles for separation of comments
+// =============================================================================
+// .thread-even {
+//     background-color: #fff;
+
+//     .odd {
+//         background-color: #eeeff1;
+
+//         .odd {
+
+//             .even {
+//                 background-color: #e4e6e9;
+//             }
+//         }
+
+//         .even {
+//             background-color: #dbdde2;
+//         }
+//     }
+// }
+
+// .thread-odd {
+//     background-color: #f7f8f9;
+
+//     .even {
+//         background-color: #eeeff1;
+
+//         .even {
+
+//             .odd {
+//                 background-color: #e4e6e9;
+//             }
+//         }
+
+//         .odd {
+//             background-color: #dbdde2;
+//         }
+//     }
+// }

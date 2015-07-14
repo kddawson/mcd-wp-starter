@@ -1,0 +1,8 @@
+{
+    "name": "mcd_theme-bower",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "bootstrap-less": "latest"
+    }
+}

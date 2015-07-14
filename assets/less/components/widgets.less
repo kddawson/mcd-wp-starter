@@ -1,0 +1,76 @@
+@charset "utf-8";
+// =============================================================================
+// Widget containers, sidebars and widgets
+// Use default WP names as much as possible
+//
+// =============================================================================
+
+
+// Containers
+// =============================================================================
+
+.widget {
+    margin-bottom: 18px;
+
+    ul,
+    ol {
+        padding-left: 15px;
+    }
+}
+
+
+// Widget components
+// =============================================================================
+
+.widgettitle {
+	margin-bottom: 9px;
+}
+
+.widgettext {}
+
+
+// Tag Widget
+// =============================================================================
+
+.tagcloud {
+	margin-bottom: 18px;
+	line-height: 160%;
+
+    > a {
+        display: inline;
+        white-space: pre;
+    }
+}
+
+
+// Calendar Widget
+// =============================================================================
+
+#calendar_wrap {
+    padding: 5px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+}
+
+#wp-calendar {
+	width: 100%;
+
+    caption {
+        padding: 8px;
+        font-weight: 700;
+    }
+
+    tr {
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    td {
+        padding: 8px 0;
+        text-align: center;
+    }
+}

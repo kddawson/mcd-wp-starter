@@ -1,0 +1,5 @@
+# Build dir
+assets/dist
+# Dependency dir
+node_modules
+bower_components
