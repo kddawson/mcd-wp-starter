@@ -35,7 +35,7 @@ function mcd_comment( $comment, $args, $depth ) {
                     <?php comment_text(); ?>
                 </div>
             </div>
-            <footer class="reply">
+            <footer class="comment-reply">
                 <?php edit_comment_link( __( '<i class="fa fa-pencil" aria-hidden="true"></i> Edit', 'mcd' ), ' ' ); ?>
                 <?php delete_comment_link(get_comment_ID()); ?>
                 <?php comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
