@@ -161,7 +161,7 @@ function mcd_setup() {
 
 
     /** -----------------------------------------------------------------------------
-     * Login and admin customisations
+     * Admin area customisations
      * ------------------------------------------------------------------------------
      */
 
@@ -170,11 +170,6 @@ function mcd_setup() {
 
     // Disable the admin bar (front end only)
     //add_filter('show_admin_bar', '__return_false');
-
-    // Custom admin login logo
-    add_action('login_head', 'mcd_login_logo');
-    // Use your own external URL logo link
-    add_filter('login_headerurl', 'mcd_url_login');
 
     add_action('wp_dashboard_setup', 'mcd_dashboard_widgets');
     add_filter('tiny_mce_before_init', 'change_mce_options');
@@ -387,49 +382,10 @@ function mcd_remove_thumbnail_dimensions( $html, $post_id, $post_image_id ) {
 
 
 /** ----------------------------------------------------------------------------------------
- * Login and admin customisations
+ * Admin area customisations
  * -----------------------------------------------------------------------------------------
  */
 
-// Custom admin login logo
-// We have to use some inline CSS to override the default WordPress styles
-function mcd_login_logo() {
-    echo '<style type="text/css">
-    .login h1 a {
-        margin: 0 auto;
-        padding-bottom: 0 !important;
-        width: 144px !important;
-        height: 144px !important;
-        background-image: url('.get_template_directory_uri().'/assets/img/custom-login-logo.png) !important;
-        background-size: auto !important;
-    }
-    .login form {
-        background-color: #fff;
-        border: none;
-    }
-    .login label {
-        color: #000 !important
-    }
-    .login form input {
-        border-color: #79c143 !important
-    }
-    .login form input.button-primary {
-        background-color: #79c143;
-        border: none !important;
-    }
-
-    .login form input.button-primary:hover,
-    .login form input.button-primary:focus,
-    .login form input.button-primary:active {
-        background-color: #619d34;
-    }
-    </style>';
-}
-
-// Use your own external URL logo link
-function mcd_url_login(){
-    return "http://example.com/";
-}
 
 // The WordPress dashboard can be a bit cluttered, let's unset and tidy up
 function mcd_dashboard_widgets() {

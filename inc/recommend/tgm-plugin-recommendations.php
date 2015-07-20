@@ -95,6 +95,12 @@ function my_theme_register_required_plugins() {
             'required'  => false,
         ),
 
+        array(
+            'name'      => 'Custom Login Page Customizer',
+            'slug'      => 'login-customizer',
+            'required'  => false,
+        ),
+
     );
 
     /**
