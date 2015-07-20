@@ -101,6 +101,12 @@ function my_theme_register_required_plugins() {
             'required'  => false,
         ),
 
+        array(
+            'name'      => 'Advanced Custom Fields',
+            'slug'      => 'advanced-custom-fields',
+            'required'  => false,
+        ),
+
     );
 
     /**

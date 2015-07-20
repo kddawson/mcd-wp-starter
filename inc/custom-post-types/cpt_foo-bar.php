@@ -1,21 +1,30 @@
 <?php
 /**
- * custom post type: FooBar
+ * Custom Post Type: FooBar
+ * Based on https://github.com/Kevinlearynet/WP-Meet-The-Team
  *
  */
 if ( !class_exists('FooBar') ):
 
-class FooBar
-{
+class FooBar {
     /**
      * Initialize & hook into WP
      */
     public function __construct() {
         add_action( 'init', array($this, 'register_post_type'), 0 );
-        add_action( 'init', array($this, 'register_taxonomy'), 0 );
-        add_action( 'wp_enqueue_scripts', array($this, 'load_styles'), 101 );
+        add_action( 'init', array($this, 'register_taxonomy'), 0 ); // optional
         add_action( 'admin_notices', array($this, 'admin_notice') );
         add_action( 'after_setup_theme', array($this, 'after_setup_theme') );
+    }
+
+
+    /**
+     * Theme setup
+     *
+     * Create a custom thumbnail size for this CPT
+     */
+    public function after_setup_theme() {
+      add_image_size('foobar', 100, 100, true); // 100px x 100px with hard crop enabled
     }
 
 
@@ -79,6 +88,40 @@ class FooBar
             //'menu_icon' => get_template_directory_uri() . '/inc/custom-post-types/foobar-icon.png',
             'rewrite' => false,
             'supports' => array('title', 'editor', 'thumbnail')
+        ) );
+    }
+
+
+    /**
+     * Register `doohickie` taxonomy (optional)
+     */
+    public function register_taxonomy() {
+
+        // Labels
+        $singular = 'Doohickie';
+        $plural = 'Doohickies';
+        $labels = array(
+            'name' => _x( $plural, "taxonomy general name"),
+            'singular_name' => _x( $singular, "taxonomy singular name"),
+            'search_items' =>  __("Search $singular"),
+            'all_items' => __("All $singular"),
+            'parent_item' => __("Parent $singular"),
+            'parent_item_colon' => __("Parent $singular:"),
+            'edit_item' => __("Edit $singular"),
+            'update_item' => __("Update $singular"),
+            'add_new_item' => __("Add New $singular"),
+            'new_item_name' => __("New $singular Name"),
+        );
+
+        // Register and attach to `foobar` post type
+        register_taxonomy( strtolower($singular), 'foobar', array(
+            'public' => true,
+            'show_ui' => true,
+            'show_in_nav_menus' => true,
+            'hierarchical' => true,
+            'query_var' => true,
+            'rewrite' => false,
+            'labels' => $labels
         ) );
     }
 
