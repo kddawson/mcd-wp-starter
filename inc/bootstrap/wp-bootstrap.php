@@ -10,26 +10,26 @@
  */
 
 
-/**
-// <div class="navbar navbar-default">
-//     <div class="container">
-//         <div class="navbar-header">
-//             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-//                 <span class="sr-only">Toggle navigation</span>
-//                 <span class="icon-bar"></span>
-//                 <span class="icon-bar"></span>
-//                 <span class="icon-bar"></span>
-//             </button>
-//             <a class="navbar-brand" title="<?php echo get_bloginfo('description'); ?>" href="/">
-//                 brand
-//             </a>
-//         </div>
-//         <nav class="collapse navbar-collapse navbar-responsive-collapse" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
-//             <?php wp_bootstrap_nav_menu(); // Adjust using Menus in Wordpress Admin ?>
-//             <?php //} ?>
-//         </nav>
-//     </div>
-// </div>
+/*
+<div class="navbar navbar-default">
+    <div class="container">
+     <div class="navbar-header">
+         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+             <span class="sr-only">Toggle navigation</span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </button>
+         <a class="navbar-brand" title="<?php echo get_bloginfo('description'); ?>" href="/">
+             brand
+         </a>
+     </div>
+     <nav class="collapse navbar-collapse navbar-responsive-collapse" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+         <?php wp_bootstrap_nav_menu(); // Adjust using Menus in Wordpress Admin ?>
+         <?php //} ?>
+     </nav>
+    </div>
+</div>
 */
 
 
