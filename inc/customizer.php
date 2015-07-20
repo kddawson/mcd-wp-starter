@@ -21,6 +21,6 @@ add_action( 'customize_register', 'mcd_customize_register' );
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
 function mcd_customize_preview_js() {
-	wp_enqueue_script( 'mcd_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20130508', true );
+	wp_enqueue_script( 'mcd_customizer', get_template_directory_uri() . '/inc/customizer.js', array( 'customize-preview' ), '20130508', true );
 }
 add_action( 'customize_preview_init', 'mcd_customize_preview_js' );
