@@ -65,18 +65,20 @@ class FooBar {
     public function register_post_type() {
 
         // Labels
+        $singular = 'Foo Bar';
+        $plural = 'Foo Bars';
         $labels = array(
-            'name' => _x("Foo Bar", "post type general name"),
-            'singular_name' => _x("Foo Bar", "post type singular name"),
-            'menu_name' => 'Foo Bars',
-            'add_new' => _x("Add New", "Foo Bar item"),
-            'add_new_item' => __("Add New Foo Bar"),
-            'edit_item' => __("Edit Foo Bar"),
-            'new_item' => __("New Foo Bar"),
-            'view_item' => __("View Foo Bar"),
-            'search_items' => __("Search Foo Bars"),
-            'not_found' =>  __("No Foo Bars Found"),
-            'not_found_in_trash' => __("No Foo Bars Found in Trash"),
+            'name' => _x($plural, "post type general name"),
+            'singular_name' => _x($singular, "post type singular name"),
+            'menu_name' => '$plural',
+            'add_new' => _x("Add New", "$singular item"),
+            'add_new_item' => __("Add New $singular"),
+            'edit_item' => __("Edit $singular"),
+            'new_item' => __("New $singular"),
+            'view_item' => __("View $singular"),
+            'search_items' => __("Search $plural"),
+            'not_found' =>  __("No $plural Found"),
+            'not_found_in_trash' => __("No $plural Found in Trash"),
             'parent_item_colon' => ''
         );
 
