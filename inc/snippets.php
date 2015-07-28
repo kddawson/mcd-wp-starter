@@ -15,12 +15,11 @@
     );
 ?>
 
+
 <?php while ( $someLoop->have_posts() ) : $someLoop->the_post(); ?>
     <!-- do some stuff -->
 <?php endwhile; ?>
 <?php wp_reset_postdata(); ?>
-
-
 
 
 <?php
@@ -52,8 +51,6 @@
 ?>
 
 
-
-
 <?php
     $showCategory = new WP_Query();
     $showCategory->query(
@@ -63,6 +60,7 @@
         )
     );
 ?>
+
 
 <?php while ($showCategory->have_posts()) : $showCategory->the_post(); ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -81,3 +79,21 @@
 </article>
 <?php endwhile; ?>
 <?php wp_reset_postdata(); ?>
+
+
+<?php
+/**
+ * Use an Advanced Custom Fields image (set to return the Image ID) with RICG Responsive Images
+ *
+ */
+?>
+<?php
+
+    $acf_image = get_field('acf_custom_image');
+    $size = 'medium'; // (thumbnail, medium, large, full or custom size)
+
+    if( $acf_image ) {
+        echo wp_get_attachment_image( $acf_image, $size );
+    }
+
+?>
