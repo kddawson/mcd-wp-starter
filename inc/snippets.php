@@ -50,8 +50,9 @@
 <?php
     global $query_string;
     $posts = query_posts('&cat=-9'); // $query_string omitted ?>
-    <?php // default loop goes here ?>
-<?php wp_reset_query(); ?>
+        <?php // default loop goes here ?>
+    <?php wp_reset_query();
+?>
 
 
 <?php
