@@ -21,10 +21,16 @@
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'mcd' ); ?></a>
 	<header id="masthead" class="site-header" role="banner" itemscope itemtype="http://schema.org/WPHeader">
 		<div class="site-branding">
-			<h1 class="site-title" itemprop="headline">
-                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-            </h1>
-			<h2 class="site-description" itemprop="description"><?php bloginfo( 'description' ); ?></h2>
+            <?php if ( is_front_page() && is_home() ) : ?>
+    			<h1 class="site-title" itemprop="headline">
+                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+                </h1>
+                <?php else : ?>
+                <div class="site-title" itemprop="headline">
+                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+                </div>
+            <?php endif; ?>
+			<div class="site-description" itemprop="description"><?php bloginfo( 'description' ); ?></div>
 		</div>
 		<nav id="siteNavigation" class="main-navigation" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
 			<button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Primary Menu', 'mcd' ); ?></button>
