@@ -5,80 +5,101 @@
  */
 ?>
 
+
 <?php
-    $someLoop = new WP_Query(
+/**
+ * Default loop
+ */
+?>
+
+<?php
+    if (have_posts()) : while (have_posts()) : the_post(); ?>
+        <?php // do some stuff ?>
+    <?php endwhile; ?>
+        <?php // do something once ?>
+    <?php else : ?>
+        <?php // do something different ?>
+    <?php endif;
+?>
+
+
+<?php
+/**
+ * Loop with query_posts() example 1
+ * Modify the default loop
+ * Use to modify a single loop
+ */
+?>
+
+<?php
+    global $query_string; // required
+    $posts = query_posts($query_string.'&cat=-9'); // exclude category 9 ?>
+        <?php // default loop goes here ?>
+    <?php wp_reset_query(); // reset the query
+?>
+
+
+<?php
+/**
+ * Loop with query_posts() example 2
+ * Override the default loop by only sending the parameters you define
+ * Use to modify a single loop
+ */
+?>
+
+<?php
+    global $query_string;
+    $posts = query_posts('&cat=-9'); // $query_string omitted ?>
+    <?php // default loop goes here ?>
+<?php wp_reset_query(); ?>
+
+
+<?php
+/**
+ * Loop with get_posts()
+ * Use to display multiple, _static_ sets of content
+ */
+?>
+
+<?php
+    global $post; // required
+    $args = array(
+        'category' => -9
+    );
+    $custom_posts = get_posts($args);
+    foreach($custom_posts as $post) : setup_postdata($post); ?>
+        <?php // do some stuff ?>
+    <?php endforeach;
+?>
+
+
+<?php
+/**
+ * Loop with WP_Query()
+ * For complete control of the customisation of multiple loops in a theme template
+ */
+?>
+
+<?php
+    // Loop 1
+    $first_query = new WP_Query('cat=-1,9&order=ASC');
+    while($first_query->have_posts()) : $first_query->the_post(); ?>
+        <?php // do some stuff ?>
+    <?php endwhile;
+    wp_reset_postdata();
+
+    // Loop 2 (using an array for the query parameters)
+    $second_query = new WP_Query(
         array(
             'post_type' => 'cpt',
-            'posts_per_page' => 3,
-            'post__not_in' => array( $post->ID )
+            'posts_per_page' => 3
         )
     );
+    while($second_query->have_posts()) : $second_query->the_post(); ?>
+        <?php // do some stuff ?>
+    <?php endwhile;
+    wp_reset_postdata();
 ?>
-
-
-<?php while ( $someLoop->have_posts() ) : $someLoop->the_post(); ?>
-    <!-- do some stuff -->
-<?php endwhile; ?>
-<?php wp_reset_postdata(); ?>
-
-
-<?php
-    global $post;
-    $temp = $wp_query;
-    $wp_query = null;
-    $wp_query = new WP_Query();
-
-    $args = array(
-        'meta_query' => array(
-            array(
-                'key' => 'some-key',
-                'value' => '1',
-                'compare' => '=='
-            )
-        ),
-        'post_status' => 'publish',
-        'post_type'   => 'cpt',
-    );
-
-    $myposts = get_posts( $args );
-
-    foreach( $myposts as $post ) :  setup_postdata($post); ?>
-        <!-- do some stuff -->
-    <?php endforeach; ?>
-    <?php
-        $wp_query = null;
-        $wp_query = $temp;  // Reset the query loop
-?>
-
-
-<?php
-    $showCategory = new WP_Query();
-    $showCategory->query(
-        array(
-            'showposts' => 2,
-            'cat' => 121
-        )
-    );
-?>
-
-
-<?php while ($showCategory->have_posts()) : $showCategory->the_post(); ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-    <header class="entry-header">
-        <?php the_post_thumbnail('some-thumbnail'); ?>
-        <h2 class="entry-title">
-            <a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
-        </h2>
-        <div class="entry-meta">
-            <time class="entry-date" datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date('d/m/y'); ?></time>
-        </div>
-    </header>
-    <div class="entry-summary">
-        <?php the_content(); ?>
-    </div>
-</article>
-<?php endwhile; ?>
-<?php wp_reset_postdata(); ?>
 
 
 <?php
