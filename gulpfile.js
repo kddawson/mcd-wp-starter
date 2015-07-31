@@ -25,10 +25,21 @@ var del         = require('del'),
 // Compile & Minify Theme CSS from LESS files
 // =============================================================================
 gulp.task('css', function () {
+
+    var onError = function (err) {
+        plugins.notify.onError({
+            title: "Gulp",
+            subtitle: "Failure!",
+            message: "Error: <%= error.message %>",
+            sound: "Beep"
+        })(err);
+
+        this.emit('end');
+    };
+
     return gulp.src('assets/less/style.less')
-    .on('error', function (err) {
-        console.error('Error!', err.message);
-    })
+
+    .pipe(plugins.plumber({ errorHandler: onError }))
     .pipe(plugins.less({compress: true}))
     .pipe(plugins.autoprefixer('last 2 version', 'ie 8', 'ie 9'))
     .pipe(plugins.minifyCss({keepBreaks: false}))
