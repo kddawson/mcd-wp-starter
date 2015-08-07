@@ -64,6 +64,11 @@ function my_theme_register_required_plugins() {
         // ),
 
         // Include a plugin from the WordPress Plugin Repository
+        array(
+            'name'      => 'Developer',
+            'slug'      => 'developer',
+            'required'  => true,
+        ),
 
         array(
             'name'      => 'Google XML Sitemaps',
@@ -78,7 +83,7 @@ function my_theme_register_required_plugins() {
         ),
 
         array(
-            'name'      => 'WordPress SEO by Yoast',
+            'name'      => 'Yoast SEO',
             'slug'      => 'wordpress-seo',
             'required'  => true,
         ),
