@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying the search form using Twitter Bootstrap
+ * The template for displaying the search form using Twitter Bootstrap (copy to searchform.php)
  *
  */
 ?>

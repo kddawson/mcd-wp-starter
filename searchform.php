@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying the search form (copy to searchform.php)
+ * The template for displaying the search form
  *
  */
 ?>
