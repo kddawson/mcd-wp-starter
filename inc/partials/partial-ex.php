@@ -2,8 +2,8 @@
 /**
  * Template partial that is shortcode-enabled
  *
- * Usage: <?php kw_example(); ?> Shortcode: [kw_example]
- * @package kw
+ * Usage: <?php mcd_example(); ?> Shortcode: [mcd_example]
+ * @package mcd
  */
 
 
@@ -24,7 +24,7 @@ function mcd_example( $atts, $content = null ) {
     $output = ob_get_clean();
     return $output;
 }
-add_shortcode('kw_example', 'kw_example');
+add_shortcode('mcd_example', 'mcd_example');
 
 
 /*
@@ -32,13 +32,13 @@ add_shortcode('kw_example', 'kw_example');
  */
 
 wp_register_script(
-    'kw-partial-ex-js',
+    'mcd-partial-ex-js',
     get_template_directory_uri() . '/inc/partials/partial-ex.js',
     array('jquery'),
     '1.0',
     true
 );
 
-wp_enqueue_script( 'kw-partial-ex-js' );
+wp_enqueue_script( 'mcd-partial-ex-js' );
 
 ?>
