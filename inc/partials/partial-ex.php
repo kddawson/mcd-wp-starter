@@ -8,10 +8,10 @@
 
 
 function mcd_example( $atts, $content = null ) {
-    extract = shortcode_atts( array(
+    extract (shortcode_atts( array(
         // For use in WP query or templating logic
         'attribute' => 'value',
-    ), $atts );
+    ), $atts ) );
 
     // buffer the output so the shortcode appears where you place it in the text editor
     ob_start();
