@@ -1,13 +1,14 @@
 <?php
 /**
  * Template partial that is shortcode-enabled
+ * See: https://codex.wordpress.org/Shortcode_API
  *
- * Usage: <?php mcd_example(); ?> Shortcode: [mcd_example]
+ * Usage: <?php mcd_example_func(); ?> Shortcode: [mcd_example]
  * @package mcd
  */
 
 
-function mcd_example( $atts, $content = null ) {
+function mcd_example_func( $atts, $content = null ) {
     extract (shortcode_atts( array(
         // For use in WP query or templating logic
         'attribute' => 'value',
@@ -15,6 +16,9 @@ function mcd_example( $atts, $content = null ) {
 
     // buffer the output so the shortcode appears where you place it in the text editor
     ob_start();
+
+    // Optional: enqueue script only when sortcode is used
+    wp_enqueue_script( 'mcd-partial-ex-js' );
 ?>
 
 <!-- WP / markup here -->
@@ -24,11 +28,11 @@ function mcd_example( $atts, $content = null ) {
     $output = ob_get_clean();
     return $output;
 }
-add_shortcode('mcd_example', 'mcd_example');
+add_shortcode('mcd_example', 'mcd_example_func');
 
 
 /*
- * Optionally, enqueue any JS specific to this partial
+ * Optional: register any JS specific to this partial
  */
 
 wp_register_script(
@@ -38,7 +42,5 @@ wp_register_script(
     '1.0',
     true
 );
-
-wp_enqueue_script( 'mcd-partial-ex-js' );
 
 ?>
