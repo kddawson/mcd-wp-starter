@@ -17,7 +17,7 @@ function mcd_example_func( $atts, $content = null ) {
     // buffer the output so the shortcode appears where you place it in the text editor
     ob_start();
 
-    // Optional: enqueue script only when sortcode is used
+    // Optional: enqueue script only when shortcode is used
     wp_enqueue_script( 'mcd-partial-ex-js' );
 ?>
 
