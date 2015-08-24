@@ -1,14 +1,22 @@
-// set the container that Masonry will be inside of in a var
-var container = document.querySelector('#masonry-loop');
+if (jQuery) {
+    (function ($) {
+        "use strict";
+        $(document).ready(function () {
 
-// create empty var msnry
-var msnry;
+            // set the container that Masonry will be inside of in a var
+            var container = document.querySelector('#masonry-loop');
 
-// initialize Masonry after all images have loaded
-imagesLoaded(container, function () {
-    msnry = new Masonry(container, {
-        "columnWidth": ".tile",
-        gutter: 15,
-        itemSelector: '.tile'
-    });
-});
+            // create empty var msnry
+            var msnry;
+
+            // initialize Masonry after all images have loaded
+            imagesLoaded(container, function () {
+                msnry = new Masonry(container, {
+                    "columnWidth": ".tile",
+                    gutter: 15,
+                    itemSelector: '.tile'
+                });
+            });
+        });
+    }(jQuery));
+}
