@@ -14,6 +14,12 @@ function mcd_example_func( $atts, $content = null ) {
         'attribute' => 'value',
     ), $atts ) );
 
+    // Write out an appropriate WP query
+    $exampleQuery = get_posts( array(
+        'posts_per_page' => $attribute,
+        'order' => 'DESC'
+    ) );
+
     // buffer the output so the shortcode appears where you place it in the text editor
     ob_start();
 
