@@ -1,0 +1,30 @@
+@charset "utf-8";
+// =============================================================================
+// CSS shapes
+// These rely on the fundamental way that borders overlap one another
+// =============================================================================
+
+
+.triangle(@dir: down, @size: 10px, @border-color: #000, @offset: 10px) {
+    content: "";
+    position: relative;
+    ._tri_offset( @dir, @offset );
+    width: 0;
+    height: 0;
+    border: @size solid transparent;
+    ._tri_dir( @dir, @border-color );
+}
+
+// When you define a direction, set the color on the opposite border to create a triangle
+._tri_dir( @dir, @color ) when ( @dir = left ) { border-right-color: @color; }
+._tri_dir( @dir, @color ) when ( @dir = right ) { border-left-color: @color; }
+._tri_dir( @dir, @color ) when ( @dir = up ) { border-bottom-color: @color; }
+._tri_dir( @dir, @color ) when ( @dir = down ) { border-top-color: @color; }
+
+// The triangle also needs a vertical offset based on its orientation
+._tri_offset( @dir, @offset ) when ( @dir = up )   { bottom: @offset; }
+._tri_offset( @dir, @offset ) when ( @dir = down ) { top: @offset; }
+
+.test:after {
+    .triangle(down, 15px, blue, 12px);
+}
