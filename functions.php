@@ -65,7 +65,7 @@ function mcd_setup() {
      *
      * ------------------------------------------------------------------------------
      */
-    require get_template_directory() . '/inc/custom-post-types/cpt_foo-bar.php';
+    //require get_template_directory() . '/inc/custom-post-types/cpt_foo-bar.php';
 
 
     /** -----------------------------------------------------------------------------
@@ -250,7 +250,7 @@ if( !function_exists( "mcd_theme_js" ) ) {
         }
 
         /**
-         * Register javaScript Libraries
+         * Register theme JavaScript
          */
         wp_register_script(
             'modernizr',
@@ -258,11 +258,6 @@ if( !function_exists( "mcd_theme_js" ) ) {
             array('jquery'),
             '2.8.3'
         );
-
-
-        /**
-         * Register config / bespoke files
-         */
 
         // Enqueue project JS in the footer by setting $in_footer = true
         wp_register_script(
@@ -275,19 +270,14 @@ if( !function_exists( "mcd_theme_js" ) ) {
 
 
         /**
-         * Enqueue jQuery Libraries
+         * Enqueue theme JS
          */
         wp_enqueue_script( 'modernizr' );
-
-
-        /**
-         * Enqueue config / bespoke
-         */
         wp_enqueue_script( 'mcd-js');
 
         // Conditional enqueue
         if ( is_front_page() ) {
-            wp_enqueue_script( 'example-js');
+            //wp_enqueue_script( 'example-js');
         }
     }
 }

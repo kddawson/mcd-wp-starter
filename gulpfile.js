@@ -42,10 +42,18 @@ gulp.task('css', function () {
     .pipe(plugins.plumber({ errorHandler: onError }))
     .pipe(plugins.less({compress: true}))
     .pipe(plugins.autoprefixer('last 2 version', 'ie 8', 'ie 9'))
-    .pipe(plugins.minifyCss({keepBreaks: false}))
-    .pipe(plugins.rename({suffix: '.min'}))
+    .pipe(plugins.minifyCss({
+        keepSpecialComments: 0,
+        keepBreaks: false,
+        compatibility: '*,' + '-units.pc,' + '-units.pt,' + '-units.in' // until this 'optimisation' is removed
+    }))
+    .pipe(plugins.rename({
+        suffix: '.min'
+    }))
     .pipe(gulp.dest('assets/dist/css'))
-    .pipe(plugins.notify({ message: 'CSS task complete', onLast: true }));
+    .pipe(plugins.notify({
+        message: 'CSS task complete', onLast: true
+    }));
 });
 
 
@@ -54,10 +62,14 @@ gulp.task('css', function () {
 gulp.task('js', function () {
     return gulp.src('assets/js/*.js')
     .pipe(plugins.concat('project.js'))
-    .pipe(plugins.rename({suffix: '.min'}))
+    .pipe(plugins.rename({
+        suffix: '.min'
+    }))
     .pipe(plugins.uglify())
     .pipe(gulp.dest('assets/dist/js'))
-    .pipe(plugins.notify({ message: 'JS task complete' }));
+    .pipe(plugins.notify({
+        message: 'JS task complete'
+    }));
 });
 
 
@@ -81,10 +93,25 @@ gulp.task('bootstrapJS', function () {
         'bower_components/bootstrap-less/js/affix.js'
     ])
     .pipe(plugins.concat('bootstrap.js'))
-    .pipe(plugins.rename({suffix: '.min'}))
+    .pipe(plugins.rename({
+        suffix: '.min'
+    }))
     .pipe(plugins.uglify())
     .pipe(gulp.dest('assets/dist/js'))
-    .pipe(plugins.notify({ message: 'Bootstrap JS task complete' }));
+    .pipe(plugins.notify({
+        message: 'Bootstrap JS task complete'
+    }));
+});
+
+
+// Copy JS libraries to dist folder
+// =============================================================================
+gulp.task('jsLibs', function () {
+    return gulp.src('./assets/js/libs/**/*.js')
+    .pipe(gulp.dest('./assets/dist/js/libs'))
+    .pipe(plugins.notify({
+        message: 'JS libraries copied to dist', onLast: true
+    }));
 });
 
 
@@ -93,14 +120,20 @@ gulp.task('bootstrapJS', function () {
 gulp.task('svg', function() {
     return gulp.src('assets/svg/*.svg')
         .pipe(plugins.svgmin())
-        .pipe(gulp.dest('assets/dist/icons'));
+        .pipe(gulp.dest('assets/dist/svg'))
+        .pipe(plugins.notify({
+            message: 'svg task complete', onLast: true
+        }));
 });
 
 
 gulp.task('svg2png', ['svg'], function() {
     return gulp.src('assets/svg/*.svg')
         .pipe(plugins.svg2png())
-        .pipe(gulp.dest('assets/dist/icons'));
+        .pipe(gulp.dest('assets/dist/img'))
+        .pipe(plugins.notify({
+            message: 'svg2png task complete', onLast: true
+        }));
 });
 
 
@@ -108,9 +141,15 @@ gulp.task('svg2png', ['svg'], function() {
 // =============================================================================
 gulp.task('images', function() {
     return gulp.src('assets/img/**/*.*')
-    .pipe(plugins.cache(plugins.imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
+    .pipe(plugins.cache(plugins.imagemin({
+        optimizationLevel: 5,
+        progressive: true,
+        interlaced: true
+    })))
     .pipe(gulp.dest('assets/dist/img'))
-    .pipe(plugins.notify({ message: 'Images task complete' }));
+    .pipe(plugins.notify({
+        message: 'Images task complete'
+    }));
 });
 
 
@@ -126,12 +165,12 @@ gulp.task('watch', function () {
 // Clean
 // =============================================================================
 gulp.task('clean', function(cb) {
-    del(['assets/dist/css', 'assets/dist/js', 'assets/dist/img'], cb);
+    del(['assets/dist/'], cb);
 });
 
 
 // Default Task
 // =============================================================================
 gulp.task('default', ['clean'], function() {
-    gulp.start('css', 'js', 'images');
+    gulp.start('css', 'js', 'jsLibs', 'images', 'svg2png');
 });
