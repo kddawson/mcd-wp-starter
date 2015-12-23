@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Twitter Bootstrap Plugin
  * Description: Integrates the Twitter Bootstrap framework into WordPress - just add class
- * Version: 3.3.2 - Keep in sync with the corresponding release of Twitter Bootstrap
+ * Version: 3.3.6 - Keep in sync with the corresponding release of Twitter Bootstrap
  * License: GPL
  * Author: Karl Dawson
  * Author URI: http://multicelldesign.com
@@ -14,7 +14,7 @@
 <div class="navbar navbar-default">
     <div class="container">
      <div class="navbar-header">
-         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-responsive-collapse" aria-expanded="false">
              <span class="sr-only">Toggle navigation</span>
              <span class="icon-bar"></span>
              <span class="icon-bar"></span>
@@ -24,7 +24,7 @@
              brand
          </a>
      </div>
-     <nav class="collapse navbar-collapse navbar-responsive-collapse" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+     <nav class="collapse navbar-collapse" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
          <?php wp_bootstrap_nav_menu(); // Adjust using Menus in Wordpress Admin ?>
          <?php //} ?>
      </nav>
@@ -82,9 +82,9 @@ class Bootstrap_Walker_Nav_Menu extends Walker_Nav_Menu {
         $attributes .= ! empty( $object->xfn )        ? ' rel="'    . esc_attr( $object->xfn        ) .'"' : '';
         $attributes .= ! empty( $object->url )        ? ' href="'   . esc_attr( $object->url        ) .'"' : '';
 
-        // if the item has children add these two attributes to the anchor tag
+        // if the item has children add these additional attributes to the anchor tag
         if ( $args->has_children ) {
-          $attributes .= ' class="dropdown-toggle" data-toggle="dropdown"';
+          $attributes .= ' class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"';
         }
 
         $item_output = $args->before;
