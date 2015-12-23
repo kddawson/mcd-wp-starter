@@ -77,12 +77,6 @@ function my_theme_register_required_plugins() {
         ),
 
         array(
-            'name'      => 'RICG Responsive Images',
-            'slug'      => 'ricg-responsive-images',
-            'required'  => true,
-        ),
-
-        array(
             'name'      => 'Yoast SEO',
             'slug'      => 'wordpress-seo',
             'required'  => true,
