@@ -307,6 +307,13 @@ if( !function_exists("mcd_theme_styles") ) {
     }
 }
 
+// Set the sizes attribute for responsive images
+// See: http://www.smashingmagazine.com/2015/12/responsive-images-in-wordpress-core/
+function adjust_image_sizes_attr( $sizes, $size ) {
+    $sizes = '(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 1362px) 62vw, 840px';
+    return $sizes;
+}
+add_filter( 'wp_calculate_image_sizes', 'adjust_image_sizes_attr', 10 , 2 );
 
 // Custom excerpt length (in words, default value = 55)
 function mcd_excerpt_length($length) {
