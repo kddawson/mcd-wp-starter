@@ -1,11 +1,12 @@
-/*
-Theme Name: wp-starter
-Theme URI: http://multicelldesign.com
-Description: A starter theme
-Author: Karl Dawson
-Version: 1.0.0
-Tags: editor-style, responsive-layout, threaded-comments, translation-ready
-Text Domain: mcd
-*/
+/**
+ * Theme Name: wp-starter
+ * Theme URI:
+ * GitHub Theme URI: https://github.com/kddawson/mcd-wp-starter
+ * Description: A starter theme
+ * Author: Karl Dawson
+ * Version: 1.0.0
+ * Tags: editor-style, responsive-layout, threaded-comments, translation-ready
+ * Text Domain: mcd
+ */
 
 /* HEADS UP: Everything that you will normally find here can be found in the assets/less/style.less */
